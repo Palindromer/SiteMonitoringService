@@ -26,7 +26,7 @@ namespace RadacodeService
                 configure.RunAsLocalSystem();
                 configure.SetServiceName("SiteMonitorService");
                 configure.SetDisplayName("SiteMonitorService");
-                configure.SetDescription("site monitoring - windows service");
+                configure.SetDescription("Site monitoring - windows service");
             });
         }
 
@@ -61,8 +61,14 @@ namespace RadacodeService
 #if !DEBUG
                 return siteMonitorThread?.IsAlive ?? false;
 #else
-                int count = ServiceController.GetServices().Where(srv => srv.ServiceName == serviceName).Count();                          
-                return count != 0;
+                int count = ServiceController.GetServices().Where(srv => srv.ServiceName == serviceName).Count();     
+                // if the service is installed    
+                if(count != 0)
+                {
+                    ServiceController sc = new ServiceController(serviceName);
+                    return sc.Status == ServiceControllerStatus.Running;
+                }                 
+                return false;
 #endif
             }
         }
