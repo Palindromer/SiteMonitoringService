@@ -1,0 +1,5 @@
+DateTime			SiteName					Status
+12/30/2016 21:48:55	http://www.apple.com	OK
+12/30/2016 21:48:55	https://www.google.com	OK
+12/30/2016 21:50:55	https://www.google.com	OK
+12/30/2016 21:53:55	http://www.apple.com	OK
