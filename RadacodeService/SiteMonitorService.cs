@@ -58,7 +58,7 @@ namespace RadacodeService
         {
             get
             {
-#if !DEBUG
+#if DEBUG
                 return siteMonitorThread?.IsAlive ?? false;
 #else
                 int count = ServiceController.GetServices().Where(srv => srv.ServiceName == serviceName).Count();     
